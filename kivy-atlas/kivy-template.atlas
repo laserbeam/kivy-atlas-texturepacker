@@ -1,0 +1,13 @@
+{% load filter %}
+{{texture.size.height|setTextureHeight}}
+{
+    "{{texture.fullName}}": [
+        "SmartUpdateHash: {{smartUpdateKey}}",
+        "Created with TexturePacker (http://www.texturepacker.com) for CAAT"
+    ],
+    "{{texture.fullName}}": {
+        {% for sprite in allSprites %}{{sprite.frameRect.height|setHeight}}
+        "{{sprite.trimmedName}}": [{{sprite.frameRect.x}}, {{sprite.frameRect.y|getInverseY}}, {{sprite.frameRect.width}}, {{sprite.frameRect.height}}]{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    }
+}
